@@ -1,0 +1,21 @@
+<!-- <p>posts-component works!</p> -->
+<div class="row" *ngIf="errorMessage">
+    <div class="text-danger" formControlName="errorMessage"> {{ errorMessage }} </div>
+</div>
+<br><br>
+<input 
+    (keyup.enter)="create(title)" #title
+    type="text" class="form-control">
+<ul class="list-group">
+    <li 
+        *ngFor = "let post of posts"
+        class="list-group-item">
+        <button
+        (click)="update(post)" 
+        class="btn btn-default btn-sm">Update</button>
+        <button
+        (click)="delete(post)" 
+        class="btn btn-default btn-sm">Delete</button>
+     {{ post.title }}
+    </li>
+</ul>

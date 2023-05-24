@@ -1,0 +1,36 @@
+<form [formGroup] = "form" (ngSubmit)="formC()">
+    <!-- <div *ngIf="form.errors" class="alert alert-danger">
+        the username or password is invalid.
+    </div> -->
+    <div formGroupName="account">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input 
+            formControlName="username"
+            
+                id="username" 
+                type="text" 
+                class="form-control">
+                <div *ngIf="username?.pending">Checking for uniqueness.....</div>
+                <!-- <div style="color: red;" *ngIf="username && username.invalid && username.touched">this input field is not valid</div> -->
+                <div style="color: red;" *ngIf="username?.errors?.['required'] && username?.touched">Username is required</div>
+                <div style="color: red;" *ngIf="username?.errors?.['minlength']">Username should be minimum {{ username?.errors?.['minlength'].requiredLength }} charecters</div>
+                <div style="color: red;" *ngIf="username?.errors?.['cannotContainSpace']">Username should not contain space</div>
+                <div style="color: red;" *ngIf="username?.errors?.['shouldBeUnique']">Username is already taken.</div>
+                <br> <br>
+            <!-- <div *ngIf="username.touched && username.invalid" class="alert alert-danger">username is invalid</div>         -->
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                formControlName="password"
+                id="password" 
+                type="text" 
+                class="form-control">
+                <span style="color: red;" *ngIf="password && password.invalid && password.touched">password input field is not valid</span>
+                <br><br>
+        </div>
+    </div>
+    
+    <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Sign Up</button>
+</form>
